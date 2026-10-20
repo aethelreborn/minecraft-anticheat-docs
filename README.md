@@ -1,71 +1,53 @@
-# Minecraft Anticheat Systems Documentation
+# Minecraft Anticheat Systems — Complete Technical Guide
 
-**Educational reference on how Minecraft anticheats work, how cheats function at a high level, and how detection & blocking occur.**
+**~58,700 words** of educational documentation on how Minecraft anticheats work, how cheats operate at a conceptual level, and how detection and mitigation are engineered.
 
-> **Disclaimer**: This repository is for educational and defensive purposes only. It explains detection mechanisms used by server-side and hybrid anticheat systems. It does **not** provide instructions for creating, obtaining, or using cheats.
+> **Educational & defensive use only.** This book describes detection mechanisms from the anticheat developer's perspective. It contains **no working cheat code, no bypass recipes, and no exploit instructions**. Every code sample is detection code that would run inside an anticheat.
 
-## Overview
+## About this book
 
-Minecraft multiplayer relies on a partially client-authoritative model. Modified clients can send altered movement, combat, and interaction data. Modern anticheat systems counteract this through physics simulation, geometric validation, packet analysis, statistical heuristics, and layered enforcement.
+This is a complete, ground-up explanation of server-side anticheat systems for Minecraft Java Edition:
 
-This documentation covers:
-
-- Client-server architecture and the Minecraft protocol
-- Categories of cheats and high-level operation
-- Server-side vs client-side vs hybrid approaches
-- Movement prediction engines
-- Combat analysis (reach, aura, aim, clicks, velocity)
-- Packet-order and protocol checks
-- Block, inventory, and world interaction checks
-- Heuristics, statistics, and machine-learning approaches
-- Violation levels, setbacks, and enforcement
-- Latency, TPS, and false-positive handling
-- Popular anticheat implementations
-- Visual hacks and the limits of pure server-side detection
-- The ongoing arms race and practical operator guidance
+- How the client-server trust model creates the problem
+- How the network protocol and packets work
+- How modern anticheats observe, simulate, and verify player claims
+- Movement prediction engines (Grim-style simulation)
+- Combat, aim, autoclicker, scaffold, and statistical detection
+- False positives, latency compensation, and operational practice
+- A practical roadmap for building your own anticheat
+- Case studies, appendices, and bibliography
 
 ## Documentation Structure
 
-| Section | Description |
-|---------|-------------|
-| [01 - Introduction & Scope](docs/01-introduction.md) | Purpose, scope, and design goals |
-| [02 - Architecture Fundamentals](docs/02-architecture.md) | Client-server model, ticks, latency, prediction |
-| [03 - Network Packets](docs/03-packets.md) | Protocol basics and what anticheats observe |
-| [04 - Cheat Categories](docs/04-cheats.md) | Movement, combat, visual, inventory cheats |
-| [05 - Server vs Client Side](docs/05-approaches.md) | Strengths, weaknesses, hybrid models |
-| [06 - Detection Philosophy](docs/06-philosophy.md) | Core principles of modern anticheat design |
-| [07 - Movement Analysis](docs/07-movement.md) | Prediction engines and physics simulation |
-| [08 - Combat Analysis](docs/08-combat.md) | Reach, KillAura, aim, autoclicker, velocity |
-| [09 - Packet Analysis](docs/09-packet-analysis.md) | Protocol validation and sequence checks |
-| [10 - Block & Inventory](docs/10-blocks-inventory.md) | Breaking, placing, inventory automation |
-| [11 - Heuristics & ML](docs/11-heuristics-ml.md) | Statistical and machine-learning detection |
-| [12 - Enforcement](docs/12-enforcement.md) | VL, setbacks, kicks, bans |
-| [13 - Latency & False Positives](docs/13-latency-fp.md) | Compensation and usability |
-| [14 - Popular Implementations](docs/14-implementations.md) | GrimAC, Vulcan, Matrix, and others |
-| [15 - Visual Hacks](docs/15-visual-hacks.md) | Why server-side alone is insufficient |
-| [16 - Hybrid Systems](docs/16-hybrid.md) | Client-side verification approaches |
-| [17 - Arms Race](docs/17-arms-race.md) | Evolution of cheats and detection |
-| [18 - Operator Guidance](docs/18-operators.md) | Practical advice for server owners |
-| [19 - Ethics & Legal](docs/19-ethics.md) | Responsible use notes |
-| [20 - Glossary](docs/20-glossary.md) | Terms and concepts |
-| [Appendix A - Check Cycle](docs/appendix-a-check-cycle.md) | Typical detection flow |
-| [Appendix B - Movement Physics](docs/appendix-b-physics.md) | Physics considerations |
-| [Appendix C - Latency Compensation](docs/appendix-c-latency.md) | Reach and timing examples |
-| [Appendix D - History](docs/appendix-d-history.md) | Evolution of Minecraft anticheats |
-| [Appendix E - Tuning](docs/appendix-e-tuning.md) | Configuration philosophy |
-| [Full Single-File Version](docs/FULL.md) | Complete documentation in one file |
+The full manuscript has been split into individual chapter files under `docs/`.
 
-## Intended Audience
+### Core chapters (start here)
 
-- Server operators and administrators
-- Plugin / anticheat developers
-- Researchers interested in networked game security
-- Players who want to understand the systems that govern competitive play
+| Chapter | Title |
+|---------|-------|
+| [01](docs/01-Introduction-The-Anticheat-Problem.md) | Introduction: The Anticheat Problem |
+| [02](docs/02-A-Short-History-of-Minecraft-Anticheats.md) | A Short History of Minecraft Anticheats |
+| [03](docs/03-The-Client-Server-Trust-Model.md) | The Client-Server Trust Model |
+| [04](docs/04-The-Minecraft-Network-Protocol-and-Packets.md) | The Minecraft Network Protocol and Packets |
+| [05](docs/05-Packet-Interception-PacketEvents-ProtocolLib-and-t.md) | Packet Interception: PacketEvents, ProtocolLib |
+| [06](docs/06-Runtime-Architecture-Threads-Ticks-and-the-Process.md) | Runtime Architecture |
+| [07](docs/07-The-Player-Data-Model.md) | The Player Data Model |
+| [08](docs/08-Vanilla-Movement-Physics-The-Code-the-Anticheat-Mu.md) | Vanilla Movement Physics |
+| [09](docs/09-Prediction-Engines-Building-the-Possibility-Set.md) | Prediction Engines |
+| [10](docs/10-Speed-Flight-and-Impossible-Movement-Detecting-Mov.md) | Speed, Flight, Impossible Movement |
 
-## License & Usage
+### Further reading
 
-This material is provided for educational purposes. Do not use it to develop or improve cheats. Server operators should publish clear rules and apply technical measures proportionately.
+Browse the full `docs/` directory for the complete set of ~70 chapter/appendix files covering combat detection, heuristics/ML, false positives, building your own anticheat, case studies, deployment architectures, and the full bibliography.
+
+## Source
+
+Derived from the full technical manuscript *Minecraft Anticheat Guide* (~58.7k words). Split into navigable pages for this repository.
+
+## License & Ethics
+
+Educational documentation for defenders. No cheat development guidance is included. See the ethics appendix and bibliography for source attributions and responsible-use notes.
 
 ---
 
-*Generated as educational documentation. Specific product internals and exact thresholds evolve continuously and are intentionally omitted.*
+*Start with [Chapter 1 — Introduction](docs/01-Introduction-The-Anticheat-Problem.md)*
